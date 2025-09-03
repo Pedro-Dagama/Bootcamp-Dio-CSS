@@ -1,0 +1,29 @@
+/* Zera margens e paddings de todos os elementos e ajusta o box-sizing */
+*{
+    margin: 0;              /* Remove margem padrão */
+    padding: 0;             /* Remove padding padrão */
+    box-sizing: border-box; /* Inclui padding e border na largura e altura */
+}
+
+/* Define tamanho padrão para todas as divs */
+div{
+    width: 200px;   /* Largura fixa de 200px */
+    height: 200px;  /* Altura fixa de 200px */
+}
+
+/* Estilo para o primeiro elemento com id "elemento-01" */
+#elemento-01{
+    background: orange; /* Fundo laranja */
+}
+
+/* Estilo para parágrafos dentro do elemento-01 */
+#elemento-01 p{
+    padding: 20px; /* Espaçamento interno de 20px em todos os lados */
+}
+
+/* Estilo para o segundo elemento com id "elemento-02" */
+#elemento-02{
+    margin-top: 30px;     /* Espaço acima do elemento */
+    background: blueviolet; /* Fundo azul-violeta */
+    color: white;         /* Cor do texto branca */
+}

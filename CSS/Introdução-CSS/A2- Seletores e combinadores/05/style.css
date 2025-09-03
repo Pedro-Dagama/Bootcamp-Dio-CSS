@@ -1,3 +1,13 @@
 div + p{
     color: tomato;
 }
+.fundo-verde + p {
+    color:aquamarine
+}
+.fundo-azul ~ p {
+    color:blue
+}
+
+.fundo-azul span + p {
+    color: red;
+}
