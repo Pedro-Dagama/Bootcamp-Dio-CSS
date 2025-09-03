@@ -1,0 +1,13 @@
+/* Seleciona todos os <p> que são FILHOS DIRETOS de uma <div>.
+   Aplica cor do texto vermelha e fundo verde-claro. */
+div > p {
+    color: red;
+    background: lightgreen;
+}
+
+/* Seleciona todos os <p> que são FILHOS DIRETOS de um <span>.
+   Aplica fundo azul e texto branco. */
+span > p {
+    background: blue;
+    color: white;
+}

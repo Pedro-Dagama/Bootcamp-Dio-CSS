@@ -1,0 +1,24 @@
+/* Seleciona todos os <li> que estão dentro de outro <li> (listas aninhadas).
+   Aplica cor verde ao texto. */
+li li {
+    color: green;
+}
+
+/* Seleciona todos os <li> que estão dentro de um elemento com a classe .fundo-verde.
+   Aplica fundo verde (RGB 81, 250, 65). */
+.fundo-verde li {
+    background: rgb(81, 250, 65);
+}
+
+/* Seleciona todos os <li> que estão dentro de um elemento com a classe .fundo-azul.
+   Aplica fundo azul (RGB 0, 174, 255). */
+.fundo-azul li {
+    background: rgb(0, 174, 255);
+}
+
+/* Seleciona todos os <li> que estão dentro do elemento com id="sublista-01"
+   e que também esteja dentro de um elemento com a classe .fundo-verde.
+   Aplica cor roxa (RGB 153, 0, 255) ao texto. */
+.fundo-verde #sublista-01 li {
+    color: rgb(153, 0, 255);
+}

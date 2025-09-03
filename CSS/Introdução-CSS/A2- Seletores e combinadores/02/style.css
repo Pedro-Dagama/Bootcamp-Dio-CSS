@@ -1,0 +1,25 @@
+/* Seleciona:
+   - todos os elementos com a classe .texto
+   - todos os elementos <h1>
+   - o elemento com id="link-referencia"
+   Aplica cor do texto vermelha */
+.texto, h1, #link-referencia {
+  color: red;
+}
+
+/* Seleciona:
+   - todos os <h1>
+   - todos os elementos cujo id COMEÇA com "botao"
+     (exemplo: <div id="botao1">, <button id="botaoEnviar">)
+   O símbolo ^ no seletor de atributo significa "começa com".
+   Aplica cor de fundo azul (RGB 76,146,250). */
+h1, [id^=botao] {
+  background-color: rgb(76, 146, 250);
+}
+
+/* Seleciona apenas os parágrafos <p> que tenham a classe .texto
+   (exemplo: <p class="texto">).
+   Aqui a cor violeta sobrescreve a cor vermelha definida antes. */
+p.texto {
+  color: violet;
+}

@@ -1,0 +1,73 @@
+/* O seletor universal (*) aplica para TODOS os elementos da página.
+   Aqui, todos os textos ficam em negrito. */
+* {
+    font-weight: bold;
+}
+
+/* Seleciona todos os <h1>.
+   Aplica fundo azul-escuro e cor do texto verde-claro. */
+h1 {
+    background-color: darkblue;
+    color: lightgreen;
+}
+
+/* Seleciona todas as <div>.
+   Fundo azul-claro e texto azul-escuro. */
+div {
+    background-color: lightblue;
+    color: darkblue;
+}
+
+/* Seleciona todos os <li> (itens de lista).
+   Fundo verde-claro. */
+li {
+    background-color: lightgreen;
+}
+
+/* Seleciona o elemento com id="texto-boas-vindas".
+   Fundo vermelho e texto branco. */
+#texto-boas-vindas {
+    background-color: red;
+    color: white;
+}
+
+/* Seleciona elementos com a classe .seletores-mais-comuns.
+   Texto vermelho. */
+.seletores-mais-comuns {
+    color: red;
+}
+
+/* Seleciona elementos com a classe .texto-maisculo.
+   Transforma o texto em MAIÚSCULAS. */
+.texto-maisculo {
+    text-transform: uppercase;
+}
+
+/* Seleciona links <a> cujo atributo title contenha a palavra "Netflix".
+   O seletor ~ significa "contém a palavra inteira".
+   Exemplo: <a title="Filmes Netflix"> será afetado. */
+a[title~="Netflix"] {
+    color: red;
+}
+
+/* Seleciona links <a> cujo atributo title COMEÇA com "streaming"
+   ou é exatamente "streaming".
+   O seletor | é usado para "igual a valor OU começa com valor-".
+   Exemplo: title="streaming" ou title="streaming-filmes". */
+a[title|="streaming"] {
+    color: rgba(0, 155, 216, 0.596);
+}
+
+/* Seleciona links <a> cujo href COMEÇA com "https://".
+   O seletor ^= significa "atributo começa com".
+   Exemplo: <a href="https://site.com"> será afetado. */
+a[href^="https://"] {
+    background-color: black;
+}
+
+/* Seleciona links <a> cujo href TERMINA com "login".
+   O seletor $= significa "atributo termina com".
+   Exemplo: <a href="/user/login"> será afetado. */
+a[href$="login"] {
+    background-color: bisque;
+}
