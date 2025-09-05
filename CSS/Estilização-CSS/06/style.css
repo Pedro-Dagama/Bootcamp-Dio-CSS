@@ -1,0 +1,36 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: linear-gradient(135deg, #aea8e2 40%, #5500e7 100%);
+  padding: 30px;
+}
+
+.exemplo {
+  width: 300px;
+  height: 120px;
+  margin-bottom: 20px;
+  border: 6px solid #7c3aed;
+  padding: 20px;
+  font-size: 1.2em;
+  color: #fff;
+  background-image: url("../../assets/images/guts-dragon-slayer-3840x2160-13637.jpg"),
+    linear-gradient(135deg, #f14c4c 40%, #7c3aed 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.normal {
+  background-blend-mode: normal;
+}
+
+.multiply {
+  background-blend-mode: multiply;
+}
+
+.screen {
+  background-blend-mode: screen;
+}
+
+.overlay {
+  background-blend-mode: overlay;
+}
