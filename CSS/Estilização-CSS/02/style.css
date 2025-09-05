@@ -1,0 +1,10 @@
+#rgb{
+            /*vermelho, verde , azul*/
+    color: rgb(35, 164, 67)
+}
+#rgba{    /*vermelho, verde , azul, transparencia(entre 1.0 e 0.0) */
+     color: rgb(35, 164, 67,.3)
+}
+#hex{
+    color: #000000;
+}

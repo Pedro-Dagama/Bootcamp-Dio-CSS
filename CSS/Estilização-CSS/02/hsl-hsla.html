@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HSL & HSLA no CSS — Guia Interativo</title>
+    <style>
+      :root {
+        --gap: 16px;
+        --radius: 16px;
+        --shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 24px;
+        font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        color: #0f172a;
+        background: #f8fafc;
+      }
+      h1 {
+        font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
+        margin: 0 0 8px;
+      }
+      h2 {
+        margin: 24px 0 8px;
+        font-size: 1.1rem;
+      }
+      p {
+        margin: 8px 0;
+      }
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 18px;
+        margin: 16px 0;
+      }
+      .grid {
+        display: grid;
+        gap: var(--gap);
+      }
+      .grid.cols-2 {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+      .swatches {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 10px;
+      }
+      .swatch {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+      }
+      .swatch .chip {
+        height: 60px;
+      }
+      .swatch code {
+        display: block;
+        padding: 8px 10px;
+        background: #f1f5f9;
+        border-top: 1px solid #e2e8f0;
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+
+      .panel {
+        display: grid;
+        gap: 14px;
+      }
+      .controls {
+        display: grid;
+        gap: 10px;
+      }
+      .control {
+        display: grid;
+        grid-template-columns: 110px 1fr 70px;
+        gap: 10px;
+        align-items: center;
+      }
+      .control output {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .preview {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 1fr;
+        align-items: center;
+      }
+      .box {
+        height: 110px;
+        border-radius: 14px;
+        border: 1px solid #e2e8f0;
+      }
+      .code {
+        font-family: var(--mono);
+        background: #0b1020;
+        color: #e5e7eb;
+        border-radius: 10px;
+        padding: 14px;
+        overflow: auto;
+      }
+
+      .legend {
+        font-family: var(--mono);
+        font-size: 13px;
+        background: #f8fafc;
+        border-left: 4px solid #94a3b8;
+        padding: 10px;
+        border-radius: 8px;
+      }
+      .contrast {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        align-items: center;
+      }
+      .contrast .sample {
+        border: 1px dashed #cbd5e1;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      details {
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: #fff;
+      }
+      details summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+      details pre {
+        margin: 0;
+      }
+
+      footer {
+        margin-top: 28px;
+        font-size: 12px;
+        color: #64748b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Entendendo <code>hsl()</code> e <code>hsla()</code> no CSS</h1>
+        <p>
+          O modelo HSL descreve cores por <strong>Matiz (Hue)</strong>,
+          <strong>Saturação (Saturation)</strong> e
+          <strong>Luminosidade (Lightness)</strong>. A variante HSLA adiciona o
+          <strong>Alpha</strong> (opacidade).
+        </p>
+      </header>
+
+      <section class="card">
+        <h2>O que cada componente significa?</h2>
+        <div class="grid cols-2">
+          <div>
+            <p class="legend">
+              <strong>Hue (H)</strong> — o ângulo no círculo cromático (0–360).
+              0 = vermelho, 120 = verde, 240 = azul.
+            </p>
+            <p class="legend">
+              <strong>Saturation (S)</strong> — intensidade da cor (0% = cinza,
+              100% = cor viva).
+            </p>
+            <p class="legend">
+              <strong>Lightness (L)</strong> — luminosidade (0% = preto, 50% =
+              cor normal, 100% = branco).
+            </p>
+            <p class="legend">
+              <strong>Alpha (A)</strong> — opacidade (0 = totalmente
+              transparente, 1 = opaco). Apenas em <code>hsla()</code> ou
+              <code>hsl()</code> com barra (<code>hsl(200 80% 50% / .5)</code>).
+            </p>
+          </div>
+          <div class="swatches" id="wheel"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Teste você mesmo (ajuste H, S, L, A)</h2>
+        <div class="grid cols-2">
+          <div class="panel">
+            <div class="controls">
+              <label class="control"
+                >Hue (°)
+                <input id="h" type="range" min="0" max="360" value="200" />
+                <output id="hOut">200°</output>
+              </label>
+              <label class="control"
+                >Saturation (%)
+                <input id="s" type="range" min="0" max="100" value="80" />
+                <output id="sOut">80%</output>
+              </label>
+              <label class="control"
+                >Lightness (%)
+                <input id="l" type="range" min="0" max="100" value="50" />
+                <output id="lOut">50%</output>
+              </label>
+              <label class="control"
+                >Alpha (0–1)
+                <input id="a" type="range" min="0" max="100" value="100" />
+                <output id="aOut">1.00</output>
+              </label>
+            </div>
+            <div class="code" id="cssSnippet">hsl(200 80% 50%)</div>
+          </div>
+          <div class="preview">
+            <div class="box" id="preview"></div>
+            <div class="contrast">
+              <div class="sample" id="onWhite">
+                <div>Texto sobre fundo <em>branco</em></div>
+                <div
+                  style="
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 8px;
+                    margin-top: 6px;
+                  "
+                  id="textOnWhite"
+                >
+                  Exemplo
+                </div>
+              </div>
+              <div
+                class="sample"
+                id="onDark"
+                style="background: #0b1020; color: #e5e7eb"
+              >
+                <div>Texto sobre fundo <em>escuro</em></div>
+                <div
+                  style="
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 8px;
+                    margin-top: 6px;
+                  "
+                  id="textOnDark"
+                >
+                  Exemplo
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Exemplos prontos</h2>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="chip" style="background: hsl(0 100% 50%)"></div>
+            <code>hsl(0 100% 50%) // vermelho</code>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: hsl(120 100% 40%)"></div>
+            <code>hsl(120 100% 40%) // verde</code>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: hsl(240 100% 50%)"></div>
+            <code>hsl(240 100% 50%) // azul</code>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: hsl(200 80% 50% / 0.5)"></div>
+            <code>hsl(200 80% 50% / .5) // HSLA (50% opacidade)</code>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: hsl(45 100% 50%)"></div>
+            <code>hsl(45 100% 50%) // amarelo</code>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: hsl(300 80% 70%)"></div>
+            <code>hsl(300 80% 70%) // magenta claro</code>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Sintaxes aceitas no CSS moderno</h2>
+        <details>
+          <summary>Ver exemplos de sintaxe</summary>
+          <pre class="code"><code>/* Sintaxe tradicional (com vírgulas) */
+color: hsl(200, 80%, 50%);
+
+/* Sintaxe moderna (space-separated) */
+color: hsl(200 80% 50%);
+
+/* Com alpha (HSLA) — duas formas equivalentes */
+color: hsla(200, 80%, 50%, .4);
+color: hsl(200 80% 50% / .4);
+
+/* Variáveis CSS também funcionam */
+--h: 200; --s: 80%; --l: 50%; --a: .6;
+color: hsl(var(--h) var(--s) var(--l) / var(--a));
+</code></pre>
+        </details>
+      </section>
+
+      <footer>
+        Dica: combine HSL com variáveis CSS para temas escuros/claros alterando
+        apenas <code>--l</code> (luminosidade) e <code>--s</code> (saturação).
+      </footer>
+    </div>
+
+    <script>
+      // Gera a roda de matizes (hue) com variações fixas de S e L
+      (function buildHueWheel() {
+        const wheel = document.getElementById("wheel");
+        const steps = 12; // 30° em cada passo
+        for (let i = 0; i < steps; i++) {
+          const hue = Math.round((360 / steps) * i);
+          const el = document.createElement("div");
+          el.className = "swatch";
+          el.innerHTML = `
+          <div class="chip" style="background:hsl(${hue} 80% 50%)"></div>
+          <code>hsl(${hue} 80% 50%)</code>
+        `;
+          wheel.appendChild(el);
+        }
+      })();
+
+      const h = document.getElementById("h");
+      const s = document.getElementById("s");
+      const l = document.getElementById("l");
+      const a = document.getElementById("a");
+
+      const hOut = document.getElementById("hOut");
+      const sOut = document.getElementById("sOut");
+      const lOut = document.getElementById("lOut");
+      const aOut = document.getElementById("aOut");
+
+      const preview = document.getElementById("preview");
+      const cssSnippet = document.getElementById("cssSnippet");
+      const textOnWhite = document.getElementById("textOnWhite");
+      const textOnDark = document.getElementById("textOnDark");
+
+      function update() {
+        const hue = Number(h.value);
+        const sat = Number(s.value);
+        const lig = Number(l.value);
+        const alpha = Number(a.value) / 100; // 0–1
+
+        hOut.textContent = `${hue}°`;
+        sOut.textContent = `${sat}%`;
+        lOut.textContent = `${lig}%`;
+        aOut.textContent = alpha.toFixed(2);
+
+        const css =
+          alpha < 1
+            ? `hsl(${hue} ${sat}% ${lig}% / ${alpha.toFixed(2)})`
+            : `hsl(${hue} ${sat}% ${lig}%)`;
+
+        preview.style.background = css;
+        cssSnippet.textContent = css;
+
+        // Amostras de contraste em fundos claros/escuros
+        textOnWhite.style.background = css;
+        textOnDark.style.background = css;
+      }
+
+      [h, s, l, a].forEach((inp) => inp.addEventListener("input", update));
+      update();
+    </script>
+  </body>
+</html>

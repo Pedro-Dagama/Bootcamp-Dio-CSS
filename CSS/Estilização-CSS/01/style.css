@@ -1,0 +1,15 @@
+
+
+#pre-definidas{
+    color: indianred;
+}
+
+li{
+    background: cyan;
+}
+
+#current-color{
+    background: transparent;
+    color: rgb(255, 166, 2);
+    border: 2px solid currentColor;
+}

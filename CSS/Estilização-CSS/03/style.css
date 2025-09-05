@@ -1,0 +1,47 @@
+/* Todas as divs terão tamanho fixo e borda azul */
+div{
+    width: 200px;           /* largura fixa de 200px */
+    height: 300px;          /* altura fixa de 300px */
+    border: 4px solid blue; /* borda azul para destacar a área da div */
+}
+
+/* Todas as imagens vão ocupar 100% da largura e altura da div */
+img{
+    width: 100%;  
+    height: 100%;
+}
+
+/* ---------- Diferenças de object-fit ---------- */
+
+/* Mantém a proporção da imagem inteira dentro da div.
+   Pode sobrar espaço (barras brancas) se a proporção não bater */
+#contain{
+    object-fit: contain;
+}
+
+/* Cobre toda a div, mantendo a proporção.
+   Se necessário, corta partes da imagem */
+#cover{
+    object-fit: cover;
+}
+
+/* Não redimensiona a imagem.
+   Ela pode "vazar" ou ficar distorcida dentro da div */
+#none{
+    object-fit: none;
+}
+
+/* Mostra a menor versão entre "none" e "contain".
+   Se a imagem couber sem cortes, usa "none",
+   senão redimensiona para "contain" */
+#scale-down{
+    object-fit: scale-down;
+}
+
+/* Usa cover, mas ajusta a posição da imagem:
+   - "left 50%" significa alinhada à esquerda
+     e centralizada verticalmente */
+#position{
+    object-fit: cover;
+    object-position: left 50%;
+}
