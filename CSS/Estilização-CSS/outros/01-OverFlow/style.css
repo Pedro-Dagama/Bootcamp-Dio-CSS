@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 30px;
+}
+
+.overflow-box {
+    width: 250px;
+    height: 60px;
+    margin-bottom: 18px;
+    padding: 10px;
+    background: #e0e7ff;
+    color: #333;
+    border: 2px solid #7c3aed;
+    font-size: 1em;
+}
+
+.overflow-visible {
+    overflow: visible;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.overflow-scroll {
+    overflow: scroll;
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+
+/* Conteúdo longo para demonstrar o overflow */
+.overflow-box::after {
+    content: " Este é um texto muito longo que ultrapassa o tamanho da caixa para mostrar o efeito do overflow.";
+}
