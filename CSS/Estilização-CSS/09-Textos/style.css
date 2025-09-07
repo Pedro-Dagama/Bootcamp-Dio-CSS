@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 30px;
+}
+
+.texto {
+    width: 350px;
+    height: 60px;
+    padding: 10px;
+    background: #e0e7ff;
+    color: #333;
+    margin-bottom: 16px;
+
+    /* text-overflow: mostra "..." quando o texto ultrapassa o limite */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* writing-mode: muda a direção do texto (vertical, horizontal) */
+.texto-vertical {
+    writing-mode: vertical-rl;
+    height: 200px;
+    white-space: normal;
+    overflow: visible;
+}
+
+/* word-wrap/overflow-wrap: quebra palavras longas automaticamente */
+.texto-wrap {
+    width: 200px;
+    white-space: normal;
+    overflow-wrap: break-word;
+    border: 1px solid #7c3aed;
+    margin-bottom: 16px;
+}
+
+/* text-align: alinhamento do texto */
+.text-align {
+    text-align: center;
+}
+
+/* text-transform: transforma o texto */
+.text-transform {
+    text-transform: uppercase;
+}
+
+/* text-decoration: decoração do texto */
+.text-decoration {
+    text-decoration: underline;
+}
+
+/* text-indent: recuo da primeira linha */
+.text-indent {
+    text-indent: 40px;
+}
+
+/* letter-spacing: espaçamento entre letras */
+.letter-spacing {
+    letter-spacing: 4px;
+}
+
+/* word-spacing: espaçamento entre palavras */
+.word-spacing {
+    word-spacing: 20px;
+}
+
+/* line-height: altura da linha */
+.line-height {
+    line-height: 2.5;
+}
+
+/* direction: direção do texto */
+.direction {
+    direction: rtl;
+}
+
+/* white-space: tratamento do espaço em branco */
+.white-space {
+    white-space: pre;
+}
+
